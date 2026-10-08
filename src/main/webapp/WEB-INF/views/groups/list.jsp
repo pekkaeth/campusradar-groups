@@ -16,7 +16,14 @@
         <div class="card shadow-sm h-100">
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title"><c:out value="${g.name}"/></h5>
+              <h5 class="card-title">
+  <c:choose>
+    <c:when test="${not empty g.myRole}">
+      <a class="text-decoration-none" href="${pageContext.request.contextPath}/groups/view?id=${g.id}"><c:out value="${g.name}"/></a>
+    </c:when>
+    <c:otherwise><c:out value="${g.name}"/></c:otherwise>
+  </c:choose>
+</h5>
               <span class="badge bg-secondary align-self-start"><c:out value="${g.category}"/></span>
             </div>
             <p class="card-text text-muted small"><c:out value="${g.description}"/></p>
